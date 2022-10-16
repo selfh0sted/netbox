@@ -1,5 +1,12 @@
 version: '3.4'
 services:
   netbox:
-    ports:
-      - 8000:8080
+    labels:
+      traefik.enable: true
+      traefik.http.routers.netbox.rule: Host(`netbox.dani.rip`)
+      traefik.http.routers.netbox.tls.certresolver: letsencrypt
+      traefik.http.services.netbox.loadbalancer.server.port: 8080
+      de.danielr1996.bashdoard.name: Netbox
+      de.danielr1996.bashdoard.url: https://netbox.dani.rip
+      de.danielr1996.bashdoard.icon: statics/netbox.ico
+      de.danielr1996.bashdoard.id: netbox

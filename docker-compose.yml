@@ -1,6 +1,7 @@
 version: '3.4'
 services:
   netbox: &netbox
+    restart: unless-stopped
     image: netboxcommunity/netbox:${VERSION-v3.3-2.2.0}
     depends_on:
     - postgres
@@ -15,6 +16,7 @@ services:
     - /data/netbox/scripts:/etc/netbox/scripts:z,ro
     - /data/netbox/netbox-media-files:/opt/netbox/netbox/media:z
   netbox-worker:
+    restart: unless-stopped
     <<: *netbox
     depends_on:
     - redis
@@ -24,6 +26,7 @@ services:
     - /opt/netbox/netbox/manage.py
     - rqworker
   netbox-housekeeping:
+    restart: unless-stopped
     <<: *netbox
     depends_on:
     - redis
@@ -33,6 +36,7 @@ services:
 
   # postgres
   postgres:
+    restart: unless-stopped
     image: postgres:14-alpine
     env_file: env/postgres.env
     volumes:
@@ -40,6 +44,7 @@ services:
 
   # redis
   redis:
+    restart: unless-stopped
     image: redis:7-alpine
     command:
     - sh
@@ -49,6 +54,7 @@ services:
     volumes:
     - /data/netbox/netbox-redis-data:/data
   redis-cache:
+    restart: unless-stopped
     image: redis:7-alpine
     command:
     - sh
