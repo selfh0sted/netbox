@@ -3,10 +3,10 @@ services:
   netbox:
     labels:
       traefik.enable: true
-      traefik.http.routers.netbox.rule: Host(`netbox.dani.rip`)
+      traefik.http.routers.netbox.rule: Host(`netbox.local.app.danielr1996.de`)
       traefik.http.routers.netbox.tls.certresolver: letsencrypt
       traefik.http.services.netbox.loadbalancer.server.port: 8080
       de.danielr1996.bashdoard.name: Netbox
-      de.danielr1996.bashdoard.url: https://netbox.dani.rip
-      de.danielr1996.bashdoard.icon: statics/netbox.ico
+      de.danielr1996.bashdoard.url: https://netbox.local.app.danielr1996.de
+      de.danielr1996.bashdoard.icon: /static/netbox_icon.svg
       de.danielr1996.bashdoard.id: netbox
